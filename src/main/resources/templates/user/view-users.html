@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{/fragments/normal-head}"></th:block>
+</head>
+<body>
+
+<h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Users:</span></h1>
+
+
+<div class="col-5 bg-dark rounded m-auto" style="height: 30vh; overflow: auto">
+    <div th:each="u: ${users}" class="mt-3 rounded badge-info">
+        <h1 th:text="|Name: ${u.username}|" class="text-black-50"></h1>
+        <th:block th:if="*{u.authorities.size() < 2}">
+
+            <a class="ml-5 h3 text-body m-auto" th:href="@{/users/promote/(id= ${u.id})}">
+                You can promote this user to admin!</a>
+        </th:block>
+
+
+
+
+    </div>
+
+
+<!--    private String id;-->
+<!--    private List<Car> cars;-->
+<!--    private Race race;-->
+<!--    private String username;-->
+</div>
+
+<a class="text-info h1" th:href="@{/home}">Go back to home</a>
+
+
+<footer th:include="~{/fragments/footer}">
+
+</footer>
+</body>
+</html>
+

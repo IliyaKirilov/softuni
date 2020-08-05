@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <th:block th:include="~{/fragments/normal-head}"></th:block>
+</head>
+<body>
+<form th:method="post" th:action="@{/register}"
+th:object="${userRegisterModel}">
+    <h1 class="w-100 text-danger text-lg-right">WARNING! ONLY FOR PEUGEOT AND CITROEN LOVERS!</h1>
+<h2 class="w-100 text-light text-lg-right">Here you can register and go on!</h2>
+
+    <small th:if="${alreadyExists}" class="text-danger">User with that name already exists!</small>
+
+    <label for="username" class="form-label"></label>
+   <div>
+    <input th:field = "*{username}" th:errorclass = "bg-danger" type="text"
+           placeholder="username" class="form-row form-control-lg text-xl-center" id="username" name="username"/>
+    <th:block th:each="e : ${#fields.errors('username')}">
+        <small th:text="${e}" class="text-danger"></small>
+    </th:block>
+    </div>
+
+    <label for="password" class="form-label"></label>
+    <div>
+        <input th:field = "*{password}" th:errorclass = "bg-danger"
+               type="password" class="form-row form-control-lg text-xl-center" id="password"
+               placeholder="password" name="password"/>
+        <th:block th:each="e : ${#fields.errors('password')}">
+            <small th:text="${e}" class="text-danger"></small>
+        </th:block>
+    </div>
+
+    <label for="confirmPassword" class="form-label"></label>
+    <input name="confirmPassword" type="password" class="form-row form-control-lg text-xl-center"
+           id="confirmPassword" placeholder="confirmPassword" required>
+
+    <h1></h1>
+
+
+    <select class="form-row form-control-lg" id="brand"
+            name="brand">
+        <option class="form-row form-control-lg text-xl-center" selected>Select your bloodType</option>
+
+        <th:block th:each="b: ${brands}">
+            <option th:text="${b}">markata</option>
+        </th:block>
+
+
+    </select>
+
+
+
+    <div class="input-group mt-3">
+        <button type="submit" class="btn btn-info mx-lg-4">Register</button>
+    </div>
+
+
+
+</form>
+
+<footer>
+    <th:block th:include="~{/fragments/footer}"></th:block>
+</footer>
+</body>
+</html>

@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"  xmlns="http://www.w3.org/1999/xhtml">
+
+
+<th:block th:include="~{/fragments/normal-head}"></th:block>
+<body>
+<main>
+    <th:block th:object="${user}">
+        <h3 class="text-light" th:text="|Your username is *{username}|"></h3>
+        <h3 class="text-light" th:text="|Your favourite brand is *{brand}|"></h3>
+        <th:block th:unless="${user.cars.size() > 0}">
+            <a class="text-light h3">You still don`t have car!Here you can</a>
+            <a class="text-info h3" th:href="@{/cars/add}">add car to your account!</a>
+        </th:block>
+
+        <th:block th:if="*{cars.size() > 0}">
+            <h3 class="text-info" th:text="|You have *{cars.size()} cars|"> </h3>
+        </th:block>
+
+        <th:block th:if="${user.race == null}">
+            <h3></h3>
+            <a class="text-light h3">You haven`t joined in race yet!</a>
+            <a class="text-info h3" th:href="@{/races/join}">Join here</a>
+        </th:block>
+
+        <th:block th:unless="${user.race == null}">
+                <th:block th:object="${user.race}">
+                    <h3 class="text-warning" th:text="|Your race name is *{name}|"></h3>
+                    <h3 class="text-warning" th:text="|It will instrument in *{country}, *{city}!|"></h3>
+                    <h3 class="text-warning" th:text="|And it  will start in *{startedOn}!|"></h3>
+                    <h3 class="text-warning" th:text="|You will compete against *{racers.size()} racers!|"></h3>
+                </th:block>
+        </th:block>
+
+    </th:block>
+
+        <h3></h3>
+    <a class="text-info h1" th:href="@{/home}">Go back to home</a>
+</main>
+    <footer >
+        <th:block th:include = "~{/fragments/footer}"> </th:block>
+    </footer>
+</body>
+</html>

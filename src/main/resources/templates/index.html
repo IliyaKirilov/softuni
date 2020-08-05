@@ -1,0 +1,34 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{/fragments/normal-head}"></th:block>
+</head>
+<body>
+<main>
+    <div class="container bg-gray p-3 rounded  text-center mt-5">
+
+        <form th:method="post" th:action="@{/register}">
+            <h1 class="text-light">
+                 Welcome to PSA GROUPE</h1>
+            <hr class="my-3"/>
+            <p class="h4 text-light">On our website
+                you will be able to race against other psa groupe lovers!</p>
+            <hr class="my-3"/>
+            <h3>
+                <a class="text-info" th:href="@{/login}">Login</a>
+                <a class="text-light">if you have an account or</a>
+                <!--                <button type="submit" class="btn btn-info mx-lg-4">Register</button>-->
+                <a class="text-info" th:href="@{/register}">Register</a>
+
+            </h3>
+
+            <p class="text-light h4">The first registered user automatically has admin rights!</p>
+        </form>
+    </div>
+</main>
+<footer>
+    <th:block th:include="~{/fragments/footer-index}">
+    </th:block>
+</footer>
+</body>
+</html>

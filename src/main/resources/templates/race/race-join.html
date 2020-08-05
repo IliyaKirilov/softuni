@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+   <th:block th:include="~{/fragments/car-head}"></th:block>
+</head>
+<body>
+
+<th:block th:object="${races}">
+
+    <th:block th:if="${cars.size() ==0}">
+        <a class="text-light h3">You cannot join race without car!</a>
+        <a class="text-light h3">You still don`t have car!Here you can</a>
+        <a class="text-warning h3" th:href="@{/cars/add}">add car to your account!</a>
+    </th:block>
+
+<th:block th:unless="${cars.size() ==0}">
+    <th:block th:if="${races.size() == 0}">
+        <h1 class="text-light">We are sorry, there are no races for the moment! You have to wait for the admin to add a race!</h1>
+    </th:block>
+
+    <th:block th:unless="${races.size() == 0}">
+        <div th:each="r: ${races}" class="mt-2 rounded badge-secondary">
+            <th:block th:if="${r.carsCapacity - r.racers.size() > 0}">
+                <h3 th:text="|Race Name: ${r.name}|" class="text-black-50"></h3>
+                <h3 th:text="|The location is: ${r.country}, ${r.city}|" class="text-black-50"></h3>
+                <h3 th:text="|It starts on ${r.startedOn} and it ends on ${r.dueDate}|" class="text-black-50"></h3>
+                <a class="ml-5 h3 text-warning m-auto" th:href="@{/users/add/race/(id= ${r.id})}">
+                    Join this race!</a>
+            </th:block>
+
+        </div>
+    </th:block>
+
+
+</th:block>
+
+</th:block>
+
+<h1></h1>
+<a class="text-warning h1" th:href="@{/home}">Go back to home</a>
+
+
+<footer>
+    <th:block th:include="~{/fragments/footer}"></th:block>
+</footer>
+</body>
+</html>

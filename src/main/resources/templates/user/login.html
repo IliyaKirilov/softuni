@@ -1,0 +1,33 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <th:block th:include="~{/fragments/normal-head}"></th:block>
+</head>
+
+
+<body>
+
+<h2 class="w-100 text-light text-lg-right">Hello,dear person!</h2>
+    <form th:method="POST" th:action="@{/login}">
+
+
+    <label for="username" class="form-label"></label>
+    <input name="username" type="text"
+           class="form-row form-control-lg text-xl-center"
+           id="username" placeholder="Username" required>
+
+
+    <label for="password" class="form-label"></label>
+    <input name="password" type="password" class="form-row form-control-lg text-xl-center"
+           id="password" placeholder="Password" required>
+
+    <div class="input-group mt-3">
+        <button type="submit" class="btn btn-info mx-lg-5">Login</button>
+    </div>
+    </form>
+
+<footer>
+    <th:block th:include="~{/fragments/footer}"></th:block>
+</footer>
+</body>
+</html>

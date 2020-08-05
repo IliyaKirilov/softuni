@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{/fragments/advanced-head}"></th:block>
+</head>
+<body>
+<form th:method="POST" th:action="@{/logout}">
+
+    <div class="aboutUs"><a class="text-warning h2" th:href="@{/aboutUs}">About us</a></div>
+
+    <div class="allCars"><a class="text-danger h1"
+                            th:href="@{/offers/view}">View all car offers!</a></div>
+
+                <h1></h1>
+
+    <div class="allCars"><a class="text-success h2"
+                            th:href="@{/cars/all(id= ${user.id})}">View your cars</a></div>
+
+<!--    <div class="allCars"><a class="text-success h2"-->
+<!--                            th:href="@{/cars/all(id= ${user.id})}">Add car offer</a></div>-->
+
+    <h2 class="text-info" th:text="|Hello - ${user.getUsername()}|"></h2>
+
+    <div sec:authorize="hasAuthority('ADMIN')">
+        <h2 class="text-info" th:text="|You are logged as Admin, so you
+            can see all users, all races, add races and so on!|"></h2>
+        <li class="col-md-4">
+            <a class="nav-link text-info  active h2" href="/users/view">View all users</a>
+        </li>
+
+        <li class="col-md-4">
+            <a class="nav-link text-info  active h2" href="/races/view">View all races</a>
+        </li>
+
+        <li class="col-md-4">
+            <a class="nav-link text-info  active h2" href="/races/add">Add race</a>
+        </li>
+    </div>
+    <div sec:authorize="hasAuthority('USER')">
+
+        <li class="col-md-4">
+            <a class="nav-link text-info  active h2" href="/cars/add">Add Car to your profile</a>
+        </li>
+
+        <th:block th:if="${user.race == null}">
+            <li class="col-md-4">
+                <a class="nav-link text-info  active h2" href="/races/join">Join race</a>
+            </li>
+        </th:block>
+        <th:block th:unless="${user.race == null}">
+            <li class="col-md-4">
+                <h2 class="nav-link text-light  active h2"
+                    th:text="|You have joined race with this name: ${user.race.getName()}|"></h2>
+            </li>
+
+        </th:block>
+
+        <li class="col-md-4">
+
+            <a class="nav-link text-info  active h2"
+               th:href="@{/users/stats/(id= ${user.id})}">Here are your profile stats!</a>
+        </li>
+
+
+    </div>
+    <button type="submit" class="btn-info">Logout</button>
+</form>
+
+<footer>
+    <th:block th:include="~{/fragments/footer}"></th:block>
+</footer>
+</body>
+</html>

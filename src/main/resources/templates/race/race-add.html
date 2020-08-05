@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+        <th:block th:include="~{/fragments/car-head}">
+
+        </th:block>
+</head>
+<body>
+
+
+<form
+        th:action="@{/races/add}" method="POST"
+        th:object="${raceAddModel}" >
+
+
+        <th:block th:if="${alreadyExists}">
+            <small  class="text-danger col-12 text-center">A Race with that name already exists!</small>
+            <br/>
+        </th:block>
+
+        <label for="name" class="form-label text-white h3">Name</label>
+        <div>
+            <input th:field = "*{name}" th:errorclass = "bg-warning" type="text"
+                   placeholder="name" class="form-control-lg" id="name" name="name"/>
+            <th:block th:each="e : ${#fields.errors('name')}">
+                <small th:text="${e}" class="text-warning h3"></small>
+            </th:block>
+        </div>
+
+
+        <label for="country" class="form-label  text-white h3">Country</label>
+        <div>
+            <input th:field = "*{country}" th:errorclass = "bg-warning" type="text"
+                   placeholder="country" class="form-control-lg" id="country" name="country"/>
+            <th:block th:each="e : ${#fields.errors('country')}">
+                <small th:text="${e}" class="text-warning h3"></small>
+            </th:block>
+        </div>
+
+        <label for="city" class="form-label text-white h3">City</label>
+        <div>
+            <input th:field = "*{city}" th:errorclass = "bg-warning" type="text"
+                   placeholder="city" class="form-control-lg" id="city" name="city"/>
+            <th:block th:each="e : ${#fields.errors('city')}">
+                <small th:text="${e}" class="text-warning h3"></small>
+            </th:block>
+        </div>
+
+        <label for="carsCapacity" class="form-label text-white h3">Car Capacity</label>
+        <div>
+            <input th:field = "*{carsCapacity}" th:errorclass = "bg-warning" type="number"
+                   placeholder="city" class="form-control-lg" id="carsCapacity" name="carsCapacity"/>
+            <th:block th:each="e : ${#fields.errors('carsCapacity')}">
+                <small th:text="${e}" class="text-warning h3"></small>
+            </th:block>
+        </div>
+
+        <label for="laps" class="form-label  text-white h3">Laps count</label>
+        <div>
+            <input th:field = "*{laps}" th:errorclass = "bg-warning" type="number"
+                   placeholder="laps" class="form-control-lg" id="laps" name="laps"/>
+            <th:block th:each="e : ${#fields.errors('laps')}">
+                <small th:text="${e}" class="text-warning h3"></small>
+            </th:block>
+        </div>
+
+
+        <label for="lapRange" class="form-label  text-white h3">Lap Range (in meters)</label>
+        <div>
+            <input th:field = "*{lapRange}" th:errorclass = "bg-warning" type="number"
+                   placeholder="lapRange" class="form-control-lg" id="lapRange" name="lapRange"/>
+            <th:block th:each="e : ${#fields.errors('laps')}">
+                <small th:text="${e}" class="text-warning h3"></small>
+            </th:block>
+        </div>
+
+        <label for="startedOn" class="form-label  text-white h3">Starded on</label>
+        <div>
+            <input th:field = "*{startedOn}" th:errorclass = "bg-warning" type="datetime-local"
+                   placeholder="startedOn" class="form-control-lg" id="startedOn" name="startedOn"/>
+            <th:block th:each="e : ${#fields.errors('startedOn')}">
+                <small th:text="${e}" class="text-warning h3"></small>
+            </th:block>
+        </div>
+        <label for="dueDate" class="form-label   text-white h3">Due date</label>
+        <div>
+            <input th:field = "*{dueDate}" th:errorclass = "bg-warning" type="datetime-local"
+                   placeholder="dueDate" class="form-control-lg" id="dueDate" name="dueDate"/>
+            <th:block th:each="e : ${#fields.errors('dueDate')}">
+                <small th:text="${e}" class="text-warning h3"></small>
+            </th:block>
+        </div>
+
+
+            <button type="submit" class="btn btn-info text-">Add Race</button>
+
+</form>
+
+
+<footer th:include="~{/fragments/footer}">
+
+</footer>
+</body>
+</html>

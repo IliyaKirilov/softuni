@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{/fragments/advanced-head}"></th:block>
+</head>
+<body>
+
+
+<form
+        th:action="@{/cars/add}" method="POST"
+        th:object="${carAddModel}" >
+
+
+<!--    <th:block th:if="${alreadyExists}">-->
+<!--        <small  class="text-danger col-12 text-center">A Race with that name already exists!</small>-->
+<!--        <br/>-->
+<!--    </th:block>-->
+
+    <label for="model" class="form-label text-white h3">Model</label>
+    <div>
+        <input th:field = "*{model}" th:errorclass = "bg-warning" type="text"
+               placeholder="model" class="form-row form-control-lg text-xl-center" id="model" name="model"/>
+        <th:block th:each="e : ${#fields.errors('model')}">
+            <small th:text="${e}" class="text-warning h3"></small>
+        </th:block>
+    </div>
+
+
+
+    <label for="yearOfProduction" class="form-label text-white h3">Year of Production</label>
+    <div>
+        <input th:field = "*{yearOfProduction}" th:errorclass = "bg-warning" type="number"
+               placeholder="yearOfProduction" class="form-row form-control-lg text-xl-center" id="yearOfProduction" name="yearOfProduction"/>
+        <th:block th:each="e : ${#fields.errors('yearOfProduction')}">
+            <small th:text="${e}" class="text-warning h3"></small>
+        </th:block>
+    </div>
+
+    <label for="mileage" class="form-label text-white h3">Mileage</label>
+    <div>
+        <input th:field = "*{mileage}" th:errorclass = "bg-warning" type="number"
+               placeholder="mileage" class="form-row form-control-lg text-xl-center" id="mileage" name="mileage"/>
+        <th:block th:each="e : ${#fields.errors('mileage')}">
+            <small th:text="${e}" class="text-warning h3"></small>
+        </th:block>
+    </div>
+
+    <label for="imgUrl" class="form-label text-white h3">Img Url</label>
+    <div>
+        <input th:field = "*{imgUrl}" th:errorclass = "bg-warning" type="text"
+               placeholder="imgUrl" class="form-row form-control-lg text-xl-center" id="imgUrl" name="imgUrl"/>
+        <th:block th:each="e : ${#fields.errors('imgUrl')}">
+            <small th:text="${e}" class="text-warning h3"></small>
+        </th:block>
+    </div>
+    <h1></h1>
+
+    <select class="form-row form-control-lg" id="brand"
+            name="brand">
+        <option class="form-row form-control-lg text-xl-center" selected>Brand</option>
+
+        <th:block th:each="brand: ${T(softuni.demo.domain.model.enums.Brand).values()}">
+            <option th:text="${brand}">markata </option>
+        </th:block>
+
+
+    </select>
+
+    <h1></h1>
+    <select class="form-row form-control-lg" id="carType"
+            name="carType">
+        <option class="form-row form-control-lg text-xl-center" selected>CarType</option>
+
+        <th:block th:each="carType: ${T(softuni.demo.domain.model.enums.CarType).values()}">
+            <option th:text="${carType}">markata </option>
+        </th:block>
+
+
+    </select>
+
+    <h1></h1>
+    <select class="form-row form-control-lg" id="engineType"
+            name="engineType">
+        <option class="form-row form-control-lg text-xl-center" selected>Engine Type</option>
+
+        <th:block th:each="engineType: ${T(softuni.demo.domain.model.enums.EngineType).values()}">
+            <option th:text="${engineType}">markata </option>
+        </th:block>
+
+
+    </select>
+
+    <h1></h1>
+
+    <select class="form-row form-control-lg" id="transmissionType"
+            name="transmissionType">
+        <option class="form-row form-control-lg text-xl-center" selected>Transmission Type</option>
+
+        <th:block th:each="transmissionType: ${T(softuni.demo.domain.model.enums.TransmissionType).values()}">
+            <option th:text="${transmissionType}">markata </option>
+        </th:block>
+
+
+    </select>
+
+
+    <h1></h1>
+
+    <button type="submit" class="btn btn-info text-">Add Car</button>
+
+</form>
+
+
+<footer th:include="~{/fragments/footer}">
+
+</footer>
+
+</body>
+</html>

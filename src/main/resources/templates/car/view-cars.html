@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{/fragments/normal-head}"></th:block>
+</head>
+<body>
+
+
+<div class="container bg-blur rounded mt-5 mb-4">
+    <th:block th:if="${cars.size() == 0}">
+        <a class="h1 text-light">Hey, you still do not have any cars in your profile, but you can</a>
+        <a class="h1 text-info" th:href="@{/cars/add}">add car here!</a>
+    </th:block>
+    <th:block th:unless="${cars.size()==0}">
+        <div class="text-center text-info h1">Here are your cars! You can offer them for sale by simple clicking the button "add for sale"</div>
+        <div th:each="car: ${cars}" class="row mt-3 mb-3">
+            <div class="col-5 bg-info rounded m-auto" style="height: 30vh; overflow: auto">
+                <div class="text-center">
+                    <h4 th:text="|Car brand: ${car.brand}|"></h4>
+                    <h4 th:text="|Car model: ${car.model}|"></h4>
+                    <h4 th:text="|Car mileage: ${car.mileage} km|"></h4>
+                    <h4 th:text="|Year: ${car.yearOfProduction}|"></h4>
+                    <h4 th:text="|EngineType: ${car.engineType}|"></h4>
+                    <h4 th:text="|TransmissionType: ${car.transmissionType}|"></h4>
+                    <img class="align-content-center" width="200px" height="120px" th:if="${car.imgUrl}"
+                         th:src="${car.imgUrl}" alt="Car image">
+                    <a class="h5 text-warning" th:href="@{/offers/add(id = ${car.id})}">Add for sale</a>
+                </div>
+            </div>
+        </div>
+    </th:block>
+        <h1></h1>
+    <a class="text-info h1" th:href="@{/home}">Go back to home</a>
+</div>
+</body>
+
+<footer>
+    <th:block th:include="~{/fragments/footer}"></th:block>
+</footer>
+</html>

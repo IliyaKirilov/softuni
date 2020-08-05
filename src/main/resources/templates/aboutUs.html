@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{/fragments/normal-head}"></th:block>
+</head>
+<body>
+
+        <div class="text-center text-light h3">
+            Hello! In this application you will find different car offers!
+            The cars are only from the psa groupe, which includes peugeot,citroen and ds.
+            You can upload data about your car and post a offer!
+            Because of nowadays thiefs, you wont be able to upload photos of your personal car,
+            because if you expose your FRAME number, it could be dangerous for your vehicle :)!
+            But you can give us just the image url of the model of your car ( you can find image in google)!
+            There is a "Join Race" option when you continue forward and it`s idea is to race virtualy against
+            other users! In case you win three times in a row, your car offer will be displayed at the top
+            of the offers! Thank you for your attention! I hope you manage to sell your car, or buy another one!
+        </div>
+
+
+
+        <a class="text-info h1" th:href="@{/home}">Go back to home</a>
+</body>
+</html>

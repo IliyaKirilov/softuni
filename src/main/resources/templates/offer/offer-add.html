@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{/fragments/normal-head}"></th:block>>
+</head>
+<body>
+<form th:method="POST" th:action="@{/offers/add}"
+th:object="${offerAddModel}">
+
+
+    <label for="price" class="form-label h3 text-info">Price for the car</label>
+    <input name="price" type="number" class="form-row form-control-lg text-xl-center"
+           id="price" placeholder="price" required>
+
+
+    <label for="description" class="form-label h3 text-info">Details for the car, phone number, email, etc.</label>
+    <input name="description" type="text"
+           class="form-row form-control-lg text-xl-center"
+           id="description" placeholder="Contacts and details" required>
+
+
+    <div class="input-group mt-3">
+        <button type="submit" class="btn btn-info mx-lg-5">Add offer</button>
+    </div>
+</form>
+
+<footer>
+    <th:block th:include="~{/fragments/footer}"></th:block>
+</footer>
+</body>
+</html>

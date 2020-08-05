@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{/fragments/normal-head}"></th:block>
+
+</head>
+<body>
+<th:block th:if="${noOffers}">
+    <h1 class="text-light">There are no offers yet! Go to your cars and click the button "add for sale" if you want to sell your car!</h1>
+</th:block>
+
+<th:block th:unless="${noOffers}">
+        <div th:each="o: ${offers}" class="m-3 border text-light">
+
+            <div th:text="|Car model: ${o.car.model}|"></div>
+            <div th:text="|Price: ${o.price} lv|"></div>
+            <div th:text="|Mileage : ${o.car.mileage}|"></div>
+            <div th:text="|Car brand: ${o.car.brand}|"></div>
+            <div th:text="|Description : ${o.description}|"></div>
+            <img class="mr-2" th:src="${o.car.imgUrl}" th:value="${o.car.imgUrl}" alt="car image" width="200px" height="120px">
+            <!--        <a class="ml-3 text-danger" th:href="@{/products/delete/(id= ${f.id})}">Buy</a>-->
+        </div>
+</th:block>
+        <h1></h1>
+<a class="text-info h1" th:href="@{/home}">Go back to home</a>
+</body>
+</html>
